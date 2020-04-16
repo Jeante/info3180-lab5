@@ -9,16 +9,25 @@ class UserProfile(db.Model):
     __tablename__ = 'user_profiles'
 
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(80))
-    last_name = db.Column(db.String(80))
-    username = db.Column(db.String(80), unique=True)
-    password = db.Column(db.String(255))
+    firstname = db.Column(db.String(80))
+    lastname = db.Column(db.String(80))
+    gender = db.Column(db.String(6), unique=True)
+    email = db.Column(db.String(50))
+    location = db.Column(db.String(40))
+    biography = db.Column(db.String(190))
+    photo = db.Column(db.String(80))
+    datejoined = db.Column(db.String(255))
 
-    def __init__(self, first_name, last_name, username, password):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.username = username
-        self.password = generate_password_hash(password, method='pbkdf2:sha256')
+    def __init__(self, firstname, lastname, email, gender, location, biography, photo, date):
+        self.firstname = firstname
+        self.lastname = lastname
+        self.email = email
+        self.gender = gender
+        self.location = location
+        self.biography = biography
+        self.photo = photo
+        self.datejoined = date
+        
         
     def is_authenticated(self):
         return True
